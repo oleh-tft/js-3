@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        
+        let bottom = parseInt(prompt("Нижня межа"));
+        let upper = parseInt(prompt("Верхня межа"));
+        let sum = 0
+        for (let i = bottom; i <= upper; i++) {
+            sum += i;
+        }
+        alert("Сума чисел диапазону [" + bottom + "," + upper + "] = " + sum);
+
+
+
+        let num1 = parseInt(prompt("Перше число"));
+        let num2 = parseInt(prompt("Друге число"));
+        let divider = num1 > num2 ? num1 : num2;
+        while (divider != 0) {
+            if (num1 % divider == 0 && num2 % divider == 0) break;
+            divider--;
+        }
+        alert("Найбільший спільний дільник = " + divider);
+
+
+        
+        let numToDivide = parseInt(prompt("Число для знаходження дільників"));
+        let numCopy = numToDivide;
+        let dividCount = 0;
+        while (numCopy != 0) {
+            if (numToDivide % numCopy == 0) {
+                dividCount++;
+                alert("Дільник №" + dividCount + " = " + numCopy)
+            }
+
+            numCopy--;
+        }
+
+
+
+        function countDigits(t4num) {
+            let digits = 0;
+            let t4temp = t4num;
+
+            if (t4num == 0) return 1;
+            while (t4temp > 0) {
+                t4temp = Math.floor(t4temp / 10);
+                digits++;
+            }
+            return digits;
+        }
+
+
+        let t4num = parseInt(prompt("Число для визначення кількості цифр"));
+        let digits = countDigits(t4num);
+        alert("Кількість цифр в числі " + t4num + ": " + digits);
+
+
+
+        let t5pos = 0
+        let t5neg = 0
+        let t5nul = 0
+        let t5even = 0
+        let t5odd = 0
+        for (let i = 0; i < 10; i++) {
+            let t5num = parseInt(prompt("Введіть число #" + (i + 1)));
+            if (t5num > 0) {
+                t5pos++;
+            } else if (t5num < 0) {
+                t5neg++;
+            } else {
+                t5nul++;
+            }
+
+            if (t5num % 2 == 0) {
+                t5even++;
+            } else {
+                t5odd++;
+            }
+        }
+        alert("Статистика:\nДодатних чисел: " + t5pos 
+        + "\nВід'ємних чисел: " + t5neg
+        + "\nНулів: " + t5nul
+        + "\nПарних чисел: " + t5even
+        + "\nНепарних чисел: " + t5odd);
+
+
+
+        do {
+            let t6num1 = parseInt(prompt("Введіть число"));
+            let t6num2 = parseInt(prompt("Введіть число"));
+            let t6oper = prompt("Введіть оператор (+, -, *, /)");
+
+            switch (t6oper) {
+                case "+":
+                    alert(t6num1 + " + " + t6num2 + " = " + (t6num1 + t6num2));
+                    break;
+                case "-":
+                    alert(t6num1 + " - " + t6num2 + " = " + (t6num1 - t6num2));
+                    break;
+                case "*":
+                    alert(t6num1 + " * " + t6num2 + " = " + (t6num1 * t6num2));
+                    break;
+                case "/":
+                    if (t6num2 == 0) {
+                        alert("Помилка!");
+                    } else {
+                        alert(t6num1 + " / " + t6num2 + " = " + (t6num1 / t6num2));
+                    }
+                    break;
+            }
+        } while (confirm("Продовжити?"));
+
+        
+        
+        let t7num = parseInt(prompt("Введіть число"));
+        let t7shift = parseInt(prompt("Введіть зсув"));
+        let t7digits = countDigits(t7num);
+        
+        let t7divid = Math.pow(10, t7shift);
+        let t7toShift = Math.floor(t7num / t7divid);
+        let t7Shifted = t7num % t7divid * Math.pow(10, t7digits - t7shift) + t7toShift;
+
+        alert("Число: " + t7num + "\nЗсунуте число: " + t7Shifted);
+
+
+
+        let day = 1;
+        do {
+            if (day == 8) day = 1;
+
+            switch (day) {
+                case 1:
+                    alert("Понеділок.");
+                    break;
+                case 2:
+                    alert("Вівторок.");
+                    break;
+                case 3:
+                    alert("Середа.");
+                    break;
+                case 4:
+                    alert("Четвер.");
+                    break;
+                case 5:
+                    alert("П'ятниця.");
+                    break;
+                case 6:
+                    alert("Субота");
+                    break;
+                case 7:
+                    alert("Неділя");
+                    break;
+            }
+            day++;
+
+        } while (confirm("Побачити наступний день?"));
+
+
+
+        let tableText = "";
+
+        for (let i = 2; i <= 9; i++) {
+            for (let j = 1; j <= 10; j++) {
+                tableText += j + "*" + i + "=" + (j * i) + "         ";
+            }
+        }
+        alert(tableText);
+
+
+
+        alert("Загадайте число (0-100)!");
+        let n10bot = 0;
+        let n10top = 100;
+        let range = 50;
+        let guess = "";
+        do {
+            guess = prompt("Загадане число > " + range + ", < " + range + " чи == " + range + "?");
+            
+            switch (guess) {
+                case "<":
+                    n10top = range;
+                    break;
+                case ">":
+                    n10bot = range;
+                    break;
+                case "==":
+                    alert("Я виграв!");
+                    break;
+            }
+            range = Math.floor((n10top + n10bot) / 2);
+
+        } while (guess != "==");
+
+    </script>
+</body>
+</html>
